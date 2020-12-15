@@ -10,30 +10,44 @@ import { Router } from '@angular/router';
 })
 export class ListImagesComponent implements OnInit {
 
+  resForm : FormGroup;
+  img !: any ;
+  rep !: any;
+
   constructor(
     private formbuilder : FormBuilder,
-    private router: Router
+    private router: Router,
+    private picturesNasa : FetchnasaapiService
   ) { }
 
-  ngOnInit(): void {}
-
-  resForm !: FormGroup;
-
+  ngOnInit(): void {
+    this.initSigninForm();
+}
 
   initSigninForm(){
     this.resForm = this.formbuilder.group({
       year:['',Validators.required],
       month:['',Validators.required],
       day:['',Validators.required]
-
     });
-  }
+    }
 
-  onSubmitForm(){
+  onSubmitDate(){
     const year = this.resForm.get('year')?.value;
     const month = this.resForm.get('month')?.value;
     const day = this.resForm.get('day')?.value;
     var date = `${year}-${month}-${day}`;
-    return date;
+    this.picturesNasa.getMarsImagesFromAPI(date)
+    .subscribe(
+      (response: object) => {
+        this.rep = response;
+        this.img = this.rep.photos;
+        console.log(this.img);
+      },
+      (error: Error) => {
+        console.log('Erreur ! : ' + error);
+      }
+  );
   }
+
 }

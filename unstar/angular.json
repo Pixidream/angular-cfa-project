@@ -150,5 +150,8 @@
       }
     }
   },
-  "defaultProject": "unstar"
+  "defaultProject": "unstar",
+  "cli": {
+    "analytics": "0f9d9be9-a062-4d90-ad20-2adf9dddcbae"
+  }
 }
