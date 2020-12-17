@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ListImagesComponent implements OnInit {
 
-  resForm : FormGroup;
+  resForm !: FormGroup;
   img !: any ;
   rep !: any;
 
@@ -49,5 +49,4 @@ export class ListImagesComponent implements OnInit {
       }
   );
   }
-
 }

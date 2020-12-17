@@ -21,9 +21,7 @@
 <mat-grid-list cols="3">
   <mat-grid-tile  *ngFor="let a of img">
     <mat-card class="example-card" >
-
          <h1 class="title">Photos n°{{a.id}}</h1>
-
       <img mat-card-image [src]="a.img_src" alt="Photo" width="400" height="400">
     </mat-card>
   </mat-grid-tile>
