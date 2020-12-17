@@ -1,0 +1,22 @@
+.example-card {
+    max-width: 700px;
+    justify-content: center;
+    margin-left: 25%;
+    background-color: #673ab7;
+  }
+  .center {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .input {
+    padding-right: 1%;
+  }
+  

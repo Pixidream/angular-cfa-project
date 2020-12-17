@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListImagesComponent } from './list-images/list-images.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSidenavModule } from  '@angular/material/sidenav';
+import { MatListModule } from  '@angular/material/list';
+
 
 
 import { FetchnasaapiService } from './services/fetchnasaapi.service';
@@ -20,12 +23,18 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import { ListImagesApodComponent } from './list-images-apod/list-images-apod.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListImagesComponent,
-    HeaderComponent
+    HeaderComponent,
+    ListImagesApodComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,10 +47,13 @@ import {MatCardModule} from '@angular/material/card';
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
+    MatSidenavModule,
+    MatListModule,
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatDatepickerModule
   ],
   providers: [
     FetchnasaapiService

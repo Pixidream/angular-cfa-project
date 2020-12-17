@@ -1,6 +1,16 @@
-<mat-toolbar>
-  <a routerLik="/" style="display: flex;">
-    <img src="../../assets/img/logo.png" alt="app logo" width="30" height="30" style="margin-right: .5rem;">
-    <span>UNSTAR</span>
-  </a>
+
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a [routerLink]="['/']" style="display: flex;">
+      <img src="../../assets/img/logo.png" alt="app logo" width="30" height="30" style="margin-right: .5rem;">
+    </a>
+      <span> UNSTAR </span>
+    <span class="menu-spacer"></span>
+    <div>
+      <a mat-button [routerLink]="['/list-images']"> Photos Mars </a>
+      <a mat-button [routerLink]="['/list-images-apod']"> Photos Astronomy </a>
+
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
+
