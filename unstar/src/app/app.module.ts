@@ -1,63 +1,76 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListImagesComponent } from './list-images/list-images.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatSidenavModule } from  '@angular/material/sidenav';
-import { MatListModule } from  '@angular/material/list';
-
-
-
-import { FetchnasaapiService } from './services/fetchnasaapi.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component'
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { fr_FR } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import fr from '@angular/common/locales/fr';
+import { HeaderComponent } from './header/header.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { MarsPictComponent } from './mars-pict/mars-pict.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ListItemsComponent } from './list-items/list-items.component';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { AstronomiPictComponent } from './astronomi-pict/astronomi-pict.component';
+import { FavoriteCollectionComponent } from './favorite-collection/favorite-collection.component';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { ListFromStorageComponent } from './list-from-storage/list-from-storage.component';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 
-import { GalleryModule } from 'ng-gallery';
-import {MatButtonModule} from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import { ListImagesApodComponent } from './list-images-apod/list-images-apod.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { HomeComponent } from './home/home.component';
-
+registerLocaleData(fr);
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListImagesComponent,
     HeaderComponent,
-    ListImagesApodComponent,
-    HomeComponent
+    NotFoundComponent,
+    HomePageComponent,
+    MarsPictComponent,
+    ListItemsComponent,
+    AstronomiPictComponent,
+    FavoriteCollectionComponent,
+    ListFromStorageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    GalleryModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatDividerModule,
-    MatGridListModule,
-    MatCardModule,
-    MatDatepickerModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NzIconModule,
+    NzLayoutModule,
+    NzResultModule,
+    NzButtonModule,
+    NzMenuModule,
+    NzAvatarModule,
+    NzTypographyModule,
+    NzDatePickerModule,
+    NzGridModule,
+    NzCardModule,
+    NzSkeletonModule,
+    NzModalModule,
+    NzEmptyModule,
+    NzTabsModule,
+    NzCarouselModule
   ],
-  providers: [
-    FetchnasaapiService
-  ],
+  providers: [{ provide: NZ_I18N, useValue: fr_FR }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

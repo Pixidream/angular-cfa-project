@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  isLogin = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handleLogin() {
+    this.isLogin = true;
+    console.log(this.isLogin);
+  }
+
+  handleLogout() {
+    this.isLogin = false;
+    console.log(this.isLogin);
   }
 
 }

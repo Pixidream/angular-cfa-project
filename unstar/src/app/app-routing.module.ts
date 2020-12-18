@@ -1,13 +1,33 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListImagesComponent } from './list-images/list-images.component';
-import { ListImagesApodComponent } from './list-images-apod/list-images-apod.component';
-import { HomeComponent } from './home/home.component';
+
+import { NotFoundComponent } from './not-found/not-found.component'
+import { HomePageComponent } from './home-page/home-page.component'
+import { MarsPictComponent } from './mars-pict/mars-pict.component'
+import { AstronomiPictComponent } from './astronomi-pict/astronomi-pict.component'
+import { FavoriteCollectionComponent } from './favorite-collection/favorite-collection.component'
 
 const routes: Routes = [
-  {path: 'list-images', component: ListImagesComponent},
-  {path: 'list-images-apod', component: ListImagesApodComponent},
-  {path: '', component: HomeComponent}
+  {
+    path: '',
+    component: HomePageComponent
+  },
+  {
+    path: 'mars',
+    component: MarsPictComponent
+  },
+  {
+    path: 'astronomie',
+    component: AstronomiPictComponent
+  },
+  {
+    path: 'ma-collection',
+    component: FavoriteCollectionComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
