@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchnasaapiService } from '../services/fetchnasaapi.service'
+import { FetchfirebaseapiService } from '../services/fetchfirebaseapi.service'
+import { AuthService } from '../services/auth.service'
+import { NzMessageService } from 'ng-zorro-antd/message'
 
 interface AstroData {
   date: string;
@@ -29,10 +32,16 @@ export class AstronomiPictComponent implements OnInit {
   };
   dateFormat ='yyyy-MM-dd';
   date: Date | null;
+  userId: string
 
   constructor(
-    private _astronomieApi: FetchnasaapiService
-  ) { }
+    private _astronomieApi: FetchnasaapiService,
+    private _fireHttp: FetchfirebaseapiService,
+    private message: NzMessageService,
+    public auth: AuthService
+  ) {
+    this.auth.user$.subscribe(user => this.userId = user.uid)
+  }
 
   ngOnInit(): void {
   }
@@ -66,6 +75,7 @@ export class AstronomiPictComponent implements OnInit {
 
   saveToFav() {
     const image_data = { ...this.astronomiePict, from: "astronomie" }
+    if (this.userId == null) {
     let storage = JSON.parse(window.localStorage.getItem('fav_pict'));
     if (storage == null) storage = {
       picture: {
@@ -79,5 +89,15 @@ export class AstronomiPictComponent implements OnInit {
       storage.picture.astronomie.push(image_data)
     }
     window.localStorage.setItem('fav_pict', JSON.stringify(storage))
+    }
+    else if (this.userId != null) {
+      this._fireHttp.postFavPict(image_data)
+        .subscribe(data => {
+          console.log(data)
+        })
+    }
+    this.message.success('Ajouté aux favoris', {
+      nzDuration: 5000
+    })
   }
 }

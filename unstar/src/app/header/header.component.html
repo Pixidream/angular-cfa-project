@@ -7,12 +7,12 @@
   <li nz-menu-item routerLink="/astronomie" routerLinkActive="ant-menu-item-selected">Photo d'Astronomie</li>
   <li nz-menu-item routerLink="/ma-collection" routerLinkActive="ant-menu-item-selected">Ma Collection</li>
 </ul>
-<div class="user-info" *ngIf="isLogin">
-  <nz-avatar class="user-avatar" nzIcon="user"></nz-avatar>
-  <p class="user-email">francoislm11@gmail.com</p>
+<div class="user-info" *ngIf="auth.user$ | async as user">
+  <nz-avatar class="user-avatar" [nzSrc]="user.photoURL"></nz-avatar>
+  <p class="user-email">{{ user.displayName }}</p>
   <button class="logout-btn" nz-button nzType="primary" nzDanger (click)="handleLogout()">Logout</button>
 </div>
-<div class="user-info" *ngIf="!isLogin">
-  <button class="logout-btn" nz-button nzType="primary" (click)="handleLogin()">Login</button>
+<div class="user-info" *ngIf="!auth.isLogin">
+  <button class="logout-btn" nz-button nzType="primary" (click)="handleLogin()"><i nz-icon nzType="google" nzTheme="outline"></i>Login with Google</button>
 </div>
 

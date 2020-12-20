@@ -14,7 +14,6 @@ export class ListFromStorageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.pictList)
   }
 
   openPictureModal(image_link: string) {
