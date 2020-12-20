@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./src/assets/img/logo.png" height="128" />
+  <img src="./unstar/src/assets/img/logo.png" height="128" />
   <br />
   <h1>UNSTAR</h1>
   <blockquote>
