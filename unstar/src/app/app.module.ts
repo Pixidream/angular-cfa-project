@@ -33,8 +33,24 @@ import { FavoriteCollectionComponent } from './favorite-collection/favorite-coll
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { ListFromStorageComponent } from './list-from-storage/list-from-storage.component';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 registerLocaleData(fr);
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDNj3qdFHu1Z43iyYON05QFRf036A91RfE",
+    authDomain: "unstar-58967.firebaseapp.com",
+    databaseURL: "https://unstar-58967-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "unstar-58967",
+    storageBucket: "unstar-58967.appspot.com",
+    messagingSenderId: "144487157460",
+    appId: "1:144487157460:web:d4c69561d15ac0055a3541",
+    measurementId: "G-E05N9H8MCF"
+  };
 
 @NgModule({
   declarations: [
@@ -46,7 +62,8 @@ registerLocaleData(fr);
     ListItemsComponent,
     AstronomiPictComponent,
     FavoriteCollectionComponent,
-    ListFromStorageComponent
+    ListFromStorageComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +85,11 @@ registerLocaleData(fr);
     NzModalModule,
     NzEmptyModule,
     NzTabsModule,
-    NzCarouselModule
+    NzCarouselModule,
+    NzMessageModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: fr_FR }],
   bootstrap: [AppComponent]

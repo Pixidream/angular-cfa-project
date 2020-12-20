@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service'
+import { FetchfirebaseapiService } from '../services/fetchfirebaseapi.service'
 
 @Component({
   selector: 'app-favorite-collection',
@@ -6,26 +8,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./favorite-collection.component.css']
 })
 export class FavoriteCollectionComponent implements OnInit {
-  pictList: []
+  pictList: Array<object> = []
   from = 'mars'
+  userid: string
 
-  constructor() { }
+  constructor(
+    private _fireHttp: FetchfirebaseapiService,
+    public auth: AuthService
+  ) {
+    this.auth.user$.subscribe(user => {
+      this.userid = user.uid
+      if (this.userid == undefined) this.loadFromLocal()
+      else this.loadFromFire()
+    })
+  }
 
   ngOnInit(): void {
-    let storage = JSON.parse(window.localStorage.getItem('fav_pict'));
-    if (storage != null) {
-      if (this.from === 'astronomie') {
-        this.from = 'mars'
-        this.pictList = []
-        this.pictList = storage.picture.astronomie
-      } else if (this.from === 'mars') {
-        this.from = 'astronomie'
-        this.pictList = []
-        this.pictList = storage.picture.mars
-      }
-    } else {
-      this.pictList = []
-    }
+  }
+
+  loadFromFire() {
+    let images: any = null
+    this._fireHttp.getFavPict()
+      .subscribe(data => {
+        images = data
+        if (this.from === 'astronomie') {
+          this.from = 'mars'
+          this.pictList = []
+          for (let image in images) {
+            if (images[image].from === 'astronomie') {
+              this.pictList.push(images[image])
+            }
+          }
+        }
+        else if (this.from === 'mars') {
+          this.from = 'astronomie'
+          this.pictList = []
+          for (let image in images) {
+            if (images[image].from === 'mars') {
+              this.pictList.push(images[image])
+            }
+          }
+        } else {
+          this.pictList = []
+        }
+      })
   }
 
   loadFromLocal() {
@@ -43,6 +69,10 @@ export class FavoriteCollectionComponent implements OnInit {
     } else {
       this.pictList = []
     }
-    console.log(this.pictList)
+  }
+
+  loadPict() {
+    if (this.userid == undefined) this.loadFromLocal()
+    else this.loadFromFire()
   }
 }
